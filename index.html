@@ -8,7 +8,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script type='text/javascript'>
-            $(document).ready(function(){ $('.links a').click(function(){ $('.links a').removeClass('current'); $(this).addClass('current'); }) });
+            $(document).ready(function(){ $('.links a, a.home').click(function(){ $('.links a, a.home').removeClass('current'); $(this).addClass('current'); }) });
         </script>
 		<style>
 			* {
@@ -38,6 +38,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
             .links a { margin-left: 40px; }
             .links a:focus { border-bottom: 4px solid #fff; }
 
+            a.home:hover, a.home.current { border: none; }
+
             .section { display: none; padding: 40px 40px 100px 40px; font-family: "Open Sans", sans-serif; }
             #contact { line-height: 20px; }
             label { display: inline-block; text-align: right; border-bottom: 2px solid rgba(255,255,255,0.3); margin-right: 3px; color: rgba(255,255,255,0.5); }
@@ -55,7 +57,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
 	</head>
 	<body>
 		<div id='main'>
-            <h1>Feynman Capital  <span class='links'><a href='#contact'>Contact</a><a href='#memos'>Memos</a></span></h1>
+            <h1><a href='#' class='home'>Feynman Capital</a>  <span class='links'><a href='#contact'>Contact</a><a href='#memos'>Memos</a></span></h1>
             <div id='sub'>
                 <div class='section' id='contact'>
                     <h2>Contact</h2>
@@ -78,7 +80,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
                     </div>
                     <div class='thing'>
                         <label>May 12<sup>th</sup> 2013</label>
-                        <span><a href=''>Top 6 ways to get rich without doing any real work</a></span>
+                        <span><a href=''>The dirty truth behind Obama Care</a></span>
                     </div>
                 </div>
             </div>
