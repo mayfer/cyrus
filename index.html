@@ -4,7 +4,12 @@
 		<title>Feynman Capital</title>
 		<script>
 		</script>
-        <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>  
+        <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type='text/javascript'>
+            $(document).ready(function(){ $('.links a').click(function(){ $('.links a').removeClass('current'); $(this).addClass('current'); }) });
+        </script>
 		<style>
 			* {
 				margin: 0;
@@ -13,30 +18,69 @@
 			html, body {
                 background: #000;
                 color: #fff;
-                font-family: 'Marcellus SC', serif;
                 font-weight: normal;
                 min-width: 1000px;
                 position: relative;
+                font-family: monospace;
 			}
 			#main { width: 960px; position: absolute; top: 200px; right: 0; }
             #arrows { background: url(arrows.png); background-size: 100%; width: 60px; height: 100px; position: absolute; top: 203px; right: 960px; }
-            #sub { height: 300px;
+            #sub { min-height: 300px;
 background: linear-gradient(to bottom,  rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
             }
 
-            h1 { display: block; border-bottom: 3px solid #fff; line-height: 50px; font-size: 45px; position: relative; font-weight: normal; }
+            h1 { display: block; border-bottom: 3px solid #fff; line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; }
+            h2 { display: block; line-height: 120px; font-size: 120px; position: absolute; bottom: 0px; right: 20px; font-weight: normal; font-family: 'Marcellus SC', serif; color: rgba(255,255,255,0.2); -webkit-filter: blur(5px); }
             a, a:visited { color: #fff; text-decoration: none;}
             .links { font-size: 15px; line-height: 25px; position: absolute; right: 50px; bottom: 0; text-shadow: 0 0 5px #000, -1px -1px 1px #000; }
-            a:hover, a.current { border-bottom: 4px solid #fff; }
+            h1 a:hover, a.current { border-bottom: 4px solid #fff; }
             .links a { margin-left: 40px; }
+            .links a:focus { border-bottom: 4px solid #fff; }
 
+            .section { display: none; padding: 40px 40px 100px 40px; font-family: "Open Sans", sans-serif; }
+            #contact { line-height: 20px; }
+            label { display: inline-block; text-align: right; border-bottom: 2px solid rgba(255,255,255,0.3); margin-right: 3px; color: rgba(255,255,255,0.5); }
+            #contact label { width: 110px; }
+            #memos label { width: 110px; }
+            .thing { margin-bottom: 20px; }
+            .thing span, #contact a { display: inline-block; }
+            .thing span { border-bottom: 2px solid rgba(200,255,200,0.3); width: 600px; }
+
+            #contact:target { display: block; }
+
+            #memos:target { display: block; }
+            #memos .thing { margin-bottom: 20px; font-size: 12px; }
 		</style>
 	</head>
 	<body>
 		<div id='main'>
-            <h1>Feynman Capital  <span class='links'><a href=''>Contact</a><a href=''>Memos</a></span></h1>
+            <h1>Feynman Capital  <span class='links'><a href='#contact'>Contact</a><a href='#memos'>Memos</a></span></h1>
             <div id='sub'>
+                <div class='section' id='contact'>
+                    <h2>Contact</h2>
+                    <div class='thing'><label>E-mail</label> <span><a href='mailto:info@feynmancapital.com'>info@feynmancapital.com</a></span></div>
+                    <div class='thing'><label>Phone</label> <span>+73 523-425-3325</span></div>
+                </div>
+                <div class='section' id='memos'>
+                    <h2>Memos</h2>
+                    <div class='thing'>
+                        <label>August 3<sup>rd</sup> 2013</label>
+                        <span><a href=''>Top 6 ways to get rich without doing any real work</a></span>
+                    </div>
+                    <div class='thing'>
+                        <label>August 3<sup>rd</sup> 2013</label>
+                        <span><a href=''>Fashion week review wrap-up bash</a></span>
+                    </div>
+                    <div class='thing'>
+                        <label>June 22<sup>nd</sup> 2013</label>
+                        <span><a href=''>Choosing the right underwear for important meetings, and how it can change your life in the long run</a></span>
+                    </div>
+                    <div class='thing'>
+                        <label>May 12<sup>th</sup> 2013</label>
+                        <span><a href=''>Top 6 ways to get rich without doing any real work</a></span>
+                    </div>
+                </div>
             </div>
         </div>
         <div></div>
