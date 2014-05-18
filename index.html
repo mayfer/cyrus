@@ -68,7 +68,7 @@
 		<style>
 			* {
 				margin: 0;
-				padding: 0;`
+				padding: 0;
 			}
 			html, body {
                 background: #0E2E68;
@@ -80,7 +80,7 @@
 			}
             #canvas { width: 100%; height: 100%; position: fixed; }
 
-			#main { width: 960px; position: absolute; top: 200px; right: 0; }
+			#main { min-width: 900px; position: absolute; top: 200px; right: 0; }
             #arrows { background: url(arrows.png); background-size: 100%; width: 60px; height: 100px; position: absolute; top: 203px; right: 960px; }
             #sub { min-height: 300px;
 background: linear-gradient(to bottom,  rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 100%); /* W3C */
@@ -90,7 +90,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
             h1 { display: block; border-bottom: 3px solid #fff; line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; }
             h2 { display: block; line-height: 120px; font-size: 120px; position: absolute; bottom: 0px; right: 20px; font-weight: normal; font-family: 'Marcellus SC', serif; color: rgba(255,255,255,0.2); -webkit-filter: blur(5px); }
             a, a:visited { color: #fff; text-decoration: none;}
-            .links { font-size: 15px; line-height: 25px; position: absolute; right: 50px; bottom: 0; }
+            .links { font-size: 15px; line-height: 25px; position: absolute; right: 150px; bottom: 0; }
             h1 a:hover, a.current { border-bottom: 4px solid #fff; }
             .links a { margin-left: 40px; }
             .links a:focus { border-bottom: 4px solid #fff; }
@@ -98,18 +98,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
             a.home:hover, a.home.current { border: none; }
 
             .section { display: none; padding: 40px 40px 100px 40px; font-family: "Open Sans", sans-serif; }
-            #contact { line-height: 20px; }
-            label { display: inline-block; text-align: right; border-bottom: 2px solid rgba(255,255,255,0.3); margin-right: 3px; color: rgba(255,255,255,0.5); }
-            #contact label { width: 110px; }
-            #memos label { width: 110px; }
-            .thing { margin-bottom: 20px; }
+            .thing { margin-bottom: 20px; font-size: 12px; }
             .thing span, #contact a { display: inline-block; }
-            .thing span { border-bottom: 2px solid rgba(255,255,255,0.7); width: 600px; }
+            .thing span {  width: 600px; }
+            label { display: inline-block; padding-right: 15px; color: rgba(255,255,255,0.5); }
+            label { display: block; }
 
             #contact:target { display: block; }
 
             #memos:target { display: block; }
-            #memos .thing { margin-bottom: 20px; font-size: 12px; }
+            #memos .thing { margin-bottom: 20px; }
 		</style>
 	</head>
 	<body>
