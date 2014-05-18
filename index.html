@@ -6,23 +6,77 @@
 		</script>
         <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="jquery-1.10.1.min.js"></script>
+        <script src="canvas.js"></script>
+        <script src="animframe.js"></script>
         <script type='text/javascript'>
-            $(document).ready(function(){ $('.links a, a.home').click(function(){ $('.links a, a.home').removeClass('current'); $(this).addClass('current'); }) });
+            $(document).ready(function(){
+                var checkUrl = function() {
+                    var hash = window.location.hash;
+                    $('a[href="'+hash+'"]').addClass('current');
+                    if(hash.length > 1) {
+                        $('#sub').show();
+                    } else {
+                        $('#sub').hide();
+                    }
+                }
+                $(document).on('hashchange', checkUrl);
+
+                var canvas = Canvas($('#canvas'));
+                var ctx = canvas.ctx;
+
+                ctx.fillStyle = "#000";
+                ctx.fillRect(0, 0, ctx.width, ctx.height);
+
+                function randomNoise() {
+                    x = 0;
+                    y = 0;
+                    width = canvas.canvas.width;
+                    height = canvas.canvas.height;
+                    alpha = 255;
+                    var g = canvas.ctx;
+                        imageData = g.getImageData(x, y, width, height),
+                        random = Math.random,
+                        pixels = imageData.data,
+                        n = pixels.length,
+                        i = 0;
+                    while (i < n) {
+                        var multiplier = random();
+                        //pixels[i++] = (14 * multiplier) | 0;
+                        //pixels[i++] = (46 * multiplier) | 0;
+                        //pixels[i++] = (104 * multiplier) | 0;
+                        pixels[i+3] = (((alpha+50) * multiplier) - 50) * (i*2/n);
+                        i += 4;
+                    }
+                    g.putImageData(imageData, x, y);
+
+                    var grd=ctx.createLinearGradient(0,0,0,height);
+                    grd.addColorStop(0,"transparent");
+                    grd.addColorStop(1,"#000");
+
+                    ctx.fillStyle=grd;
+                    ctx.fillRect(0, 0, width, height);
+                }
+
+                window.requestAnimFrame(randomNoise);
+
+            });
         </script>
 		<style>
 			* {
 				margin: 0;
-				padding: 0;
+				padding: 0;`
 			}
 			html, body {
-                background: #000;
+                background: #0E2E68;
                 color: #fff;
                 font-weight: normal;
                 min-width: 1000px;
                 position: relative;
                 font-family: monospace;
 			}
+            #canvas { width: 100%; height: 100%; position: fixed; }
+
 			#main { width: 960px; position: absolute; top: 200px; right: 0; }
             #arrows { background: url(arrows.png); background-size: 100%; width: 60px; height: 100px; position: absolute; top: 203px; right: 960px; }
             #sub { min-height: 300px;
@@ -33,7 +87,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
             h1 { display: block; border-bottom: 3px solid #fff; line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; }
             h2 { display: block; line-height: 120px; font-size: 120px; position: absolute; bottom: 0px; right: 20px; font-weight: normal; font-family: 'Marcellus SC', serif; color: rgba(255,255,255,0.2); -webkit-filter: blur(5px); }
             a, a:visited { color: #fff; text-decoration: none;}
-            .links { font-size: 15px; line-height: 25px; position: absolute; right: 50px; bottom: 0; text-shadow: 0 0 5px #000, -1px -1px 1px #000; }
+            .links { font-size: 15px; line-height: 25px; position: absolute; right: 50px; bottom: 0; }
             h1 a:hover, a.current { border-bottom: 4px solid #fff; }
             .links a { margin-left: 40px; }
             .links a:focus { border-bottom: 4px solid #fff; }
@@ -47,7 +101,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
             #memos label { width: 110px; }
             .thing { margin-bottom: 20px; }
             .thing span, #contact a { display: inline-block; }
-            .thing span { border-bottom: 2px solid rgba(200,255,200,0.3); width: 600px; }
+            .thing span { border-bottom: 2px solid rgba(255,255,255,0.7); width: 600px; }
 
             #contact:target { display: block; }
 
@@ -56,16 +110,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
 		</style>
 	</head>
 	<body>
+        <div id='canvas'></div>
 		<div id='main'>
             <h1><a href='#' class='home'>Feynman Capital</a>  <span class='links'><a href='#contact'>Contact</a><a href='#memos'>Memos</a></span></h1>
             <div id='sub'>
                 <div class='section' id='contact'>
-                    <h2>Contact</h2>
                     <div class='thing'><label>E-mail</label> <span><a href='mailto:info@feynmancapital.com'>info@feynmancapital.com</a></span></div>
                     <div class='thing'><label>Phone</label> <span>+73 523-425-3325</span></div>
                 </div>
                 <div class='section' id='memos'>
-                    <h2>Memos</h2>
                     <div class='thing'>
                         <label>August 3<sup>rd</sup> 2013</label>
                         <span><a href=''>Top 6 ways to get rich without doing any real work</a></span>
