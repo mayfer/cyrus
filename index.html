@@ -13,14 +13,17 @@
             $(document).ready(function(){
                 var checkUrl = function() {
                     var hash = window.location.hash;
-                    $('a[href="'+hash+'"]').addClass('current');
+                    console.log(hash)
+                    $('.links a').removeClass('current');
+                    $('.links a[href="'+hash+'"]').addClass('current');
                     if(hash.length > 1) {
                         $('#sub').show();
                     } else {
                         $('#sub').hide();
                     }
                 }
-                $(document).on('hashchange', checkUrl);
+                window.onhashchange = checkUrl;
+                checkUrl();
 
                 var canvas = Canvas($('#canvas'));
                 var ctx = canvas.ctx;
@@ -52,7 +55,7 @@
 
                     var grd=ctx.createLinearGradient(0,0,0,height);
                     grd.addColorStop(0,"transparent");
-                    grd.addColorStop(1,"#000");
+                    grd.addColorStop(1,"#fff");
 
                     ctx.fillStyle=grd;
                     ctx.fillRect(0, 0, width, height);
