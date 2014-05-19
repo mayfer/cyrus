@@ -28,10 +28,10 @@
                 var canvas = Canvas($('#canvas'));
                 var ctx = canvas.ctx;
 
-                ctx.fillStyle = "#000";
-                ctx.fillRect(0, 0, ctx.width, ctx.height);
 
                 function randomNoise() {
+                    ctx.fillStyle = "#000";
+                    ctx.fillRect(0, 0, ctx.width, ctx.height);
                     x = 0;
                     y = 0;
                     width = canvas.canvas.width;
