@@ -67,6 +67,17 @@
                     randomNoise();
                 };
 
+
+
+                var queryDict = {}
+                location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+                var theme = queryDict['theme']
+                if(theme == 'blue') {
+                    $('#canvas').hide();
+                } else if(theme) {
+                    $('#canvas').hide();
+                    $('html, body').css('background', "#"+theme);
+                }
             });
         </script>
 		<style>
@@ -91,7 +102,7 @@ background: linear-gradient(to bottom,  rgba(255,255,255,0.25) 0%, rgba(255,255,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
             }
 
-            h1 { display: block; border-bottom: 3px solid #fff; line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; }
+            h1 { display: block; border-bottom: 3px solid rgba(255,255,255,0.5); line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; }
             h2 { display: block; line-height: 120px; font-size: 120px; position: absolute; bottom: 0px; right: 20px; font-weight: normal; font-family: 'Marcellus SC', serif; color: rgba(255,255,255,0.2); -webkit-filter: blur(5px); }
             a, a:visited { color: #fff; text-decoration: none;}
             .links { font-size: 15px; line-height: 25px; position: absolute; right: 150px; bottom: 0; }
