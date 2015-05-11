@@ -6,9 +6,7 @@
 		</script>
         <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <script src="jquery-1.10.1.min.js"></script>
-        <script src="canvas.js"></script>
-        <script src="animframe.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script type='text/javascript'>
             $(document).ready(function(){
                 var checkUrl = function() {
@@ -25,57 +23,11 @@
                 window.onhashchange = checkUrl;
                 checkUrl();
 
-                var canvas = Canvas($('#canvas'));
-                var ctx = canvas.ctx;
-
-
-                function randomNoise() {
-                    ctx.fillStyle = "#000";
-                    ctx.fillRect(0, 0, ctx.width, ctx.height);
-                    x = 0;
-                    y = 0;
-                    width = canvas.canvas.width;
-                    height = canvas.canvas.height;
-                    alpha = 255;
-                    var g = canvas.ctx;
-                        imageData = g.getImageData(x, y, width, height),
-                        random = Math.random,
-                        pixels = imageData.data,
-                        n = pixels.length,
-                        i = 0;
-                    while (i < n) {
-                        var multiplier = random();
-                        //pixels[i++] = (14 * multiplier) | 0;
-                        //pixels[i++] = (46 * multiplier) | 0;
-                        //pixels[i++] = (104 * multiplier) | 0;
-                        pixels[i+3] = (((alpha+50) * multiplier) - 50) * (i*2/n);
-                        i += 4;
-                    }
-                    g.putImageData(imageData, x, y);
-
-                    var grd=ctx.createLinearGradient(0,0,0,height);
-                    grd.addColorStop(0,"transparent");
-                    grd.addColorStop(1,"#fff");
-
-                    ctx.fillStyle=grd;
-                    ctx.fillRect(0, 0, width, height);
-                }
-
-                window.requestAnimFrame(randomNoise);
-                window.onresize = function() { 
-                    ctx.clearRect(0, 0, canvas.w, canvas.h);
-                    randomNoise();
-                };
-
-
 
                 var queryDict = {}
                 location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
                 var theme = queryDict['theme']
-                if(theme == 'blue') {
-                    $('#canvas').hide();
-                } else if(theme) {
-                    $('#canvas').hide();
+                if(theme && theme != 'blue') {
                     $('html, body').css('background', "#"+theme);
                 }
             });
@@ -131,7 +83,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
             <div id='sub'>
                 <div class='section' id='contact'>
                     <div class='thing'><label>E-mail</label> <span><a href='mailto:info@feynmancapital.com'>info@feynmancapital.com</a></span></div>
-                    <div class='thing'><label>Phone</label> <span>+73 523-425-3325</span></div>
                 </div>
                 <div class='section' id='memos'>
                     <div class='thing'>
