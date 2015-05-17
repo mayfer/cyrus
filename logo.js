@@ -30,10 +30,15 @@ var Logo = function(elem, options) {
         ctx.clearRect(0, 0, ctx.width, ctx.height);
     };
 
-    lg.wave = function(freq) {
+    lg.wave = function(freq, amplitude) {
         var wave = this;
         wave.freq = freq;
         wave.phase = 0;
+        if(amplitude) {
+            wave.amplitude = amplitude;
+        } else {
+            wave.amplitude = 6;
+        }
         wave.iter = Math.random() * Math.PI * 2;
     }
     
@@ -54,9 +59,13 @@ var Logo = function(elem, options) {
             var val = 0;
             for(var i=0; i<lg.waves.length; i++) {
                 var wave = lg.waves[i];
-                val += Math.sin(wave.iter) * Math.sin( (x / (radius*2)) * Math.PI * 2 * (wave.freq / 220)) * 5;
+                val += Math.sin(wave.iter) * Math.sin( (x / (radius*2)) * Math.PI * 2 * (wave.freq / 220)) * wave.amplitude;
                 wave.iter += wave.freq/2200000;
             }
+
+            var multiplier = Math.sin((x / (radius*2)) * Math.PI);
+            val *= multiplier;
+
             ctx.lineTo(pos - x, center + val);
         }
         ctx.arc(center, center, radius, Math.PI, Math.PI * 2, false);
@@ -98,6 +107,8 @@ var Logo = function(elem, options) {
             var wave = new lg.wave(base_freq * i);
             lg.waves.push(wave);
         }
+
+        // var wave = new lg.wave(5500, 3); lg.waves.push(wave);
     };
 
     lg.distance = function(pos1, pos2) {
