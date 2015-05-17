@@ -34,6 +34,7 @@ var Logo = function(elem, options) {
         var wave = this;
         wave.freq = freq;
         wave.phase = 0;
+        wave.iter = Math.random() * Math.PI * 2;
     }
     
     lg.render = function() {
@@ -53,7 +54,8 @@ var Logo = function(elem, options) {
             var val = 0;
             for(var i=0; i<lg.waves.length; i++) {
                 var wave = lg.waves[i];
-                val += Math.sin(x / radius*2) * Math.sin(x/10 * wave.freq/220 + lg.iter) * 5;
+                val += Math.sin(wave.iter) * Math.sin( (x / (radius*2)) * Math.PI * 2 * (wave.freq / 220)) * 5;
+                wave.iter += wave.freq/2200000;
             }
             ctx.lineTo(pos - x, center + val);
         }
