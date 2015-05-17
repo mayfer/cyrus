@@ -1,0 +1,169 @@
+
+var extend = function(dest, from) {
+    var props = Object.getOwnPropertyNames(from);
+    props.forEach(function(name) {
+        if (name in dest) {
+            var destination = Object.getOwnPropertyDescriptor(from, name);
+            Object.defineProperty(dest, name, destination);
+        }
+    });
+    return dest;
+};
+
+var Logo = function(elem, options) {
+    var lg = this;
+
+    lg.canvas = Canvas(elem);
+    lg.ctx = lg.canvas.getContext("2d");
+
+    var ctx = lg.ctx; // shortcut
+
+    if(options === undefined) { options = {}; }
+    lg.options = extend({
+        resizeWithWindow: true,
+    }, options);
+
+    lg.hover = function(percent) {
+    };
+
+    lg.reset = function() {
+        ctx.clearRect(0, 0, ctx.width, ctx.height);
+    };
+
+    lg.wave = function(freq) {
+        var wave = this;
+        wave.freq = freq;
+        wave.phase = 0;
+    }
+    
+    lg.render = function() {
+        lg.reset();
+        ctx.strokeStyle = '#f00';
+        ctx.fillStyle = '#fff';
+        ctx.lineWidth = 3;
+
+        ctx.beginPath();
+
+        var center = 150;
+        var radius = 50;
+        var pos = center + radius;
+        ctx.lineTo(pos, center);
+
+        for(var x = 0; x <= radius*2; x+=1) {
+            var val = 0;
+            for(var i=0; i<lg.waves.length; i++) {
+                var wave = lg.waves[i];
+                val += Math.sin(x / radius*2) * Math.sin(x/10 * wave.freq/220 + lg.iter) * 5;
+            }
+            ctx.lineTo(pos - x, center + val);
+        }
+        ctx.arc(center, center, radius, Math.PI, Math.PI * 2, false);
+        //ctx.stroke();
+        ctx.fill();
+    };
+    lg.animate = function() {
+
+        lg.iter += 0.1;
+
+        window.requestAnimationFrame(function() {
+            lg.render();
+            if(lg.animating == true) {
+                lg.animate();
+            }
+        });
+    };
+
+    lg.particle = function(center, direction, radius) {
+        this.center = {
+            x: center.x,
+            y: center.y,
+        };
+        this.original_center = {
+            x: center.x,
+            y: center.y,
+        };
+        this.direction = {
+            x: direction.x,
+            y: direction.y,
+        };
+        this.radius = radius;
+    };
+
+    lg.resize = function() {
+        var base_freq = 220;
+        lg.waves = [];
+        for(var i=0; i<5; i++) {
+            var wave = new lg.wave(base_freq * i);
+            lg.waves.push(wave);
+        }
+    };
+
+    lg.distance = function(pos1, pos2) {
+        var diff = {
+            x: (pos1.x - pos2.x),
+            y: (pos1.y - pos2.y),
+        }
+
+        return Math.sqrt(Math.pow(diff.x, 2) + Math.pow(diff.y, 2));
+    }
+
+
+    lg.init = function() {
+
+        lg.resize();
+        lg.reset();
+
+        var getCoordinates = function(that, e) {
+            if(e && e.changedTouches && e.changedTouches[0]) {
+                e = e.changedTouches[0];
+            }
+
+            var rect = that.getBoundingClientRect()
+            var parentOffset = {
+                top: rect.top + document.body.scrollTop,
+                left: rect.left + document.body.scrollLeft
+            }
+
+            var x = e.pageX - parentOffset.left;
+            var y = e.pageY - parentOffset.top;
+
+            return {x: x, y: y};
+        }
+
+        var clickOrTap = function(e) {
+            var pos = getCoordinates(this, e);
+        };
+
+        var hoverOrTouchMove = function(e) {
+            var pos = getCoordinates(this, e);
+            //lg.disrupt(pos);
+            //lg.animating = false;
+        };
+
+        var mouseout = function(e){
+        };
+
+        elem.addEventListener('click', clickOrTap);
+        elem.addEventListener('touchstart', hoverOrTouchMove);
+        elem.addEventListener('mousemove', hoverOrTouchMove);
+        elem.addEventListener('mouseout', mouseout);
+        elem.addEventListener('touchend', mouseout);
+
+        if(lg.options.resizeWithWindow === true) {
+            var resizeHandler;
+            window.addEventListener('resize', function(e){
+                clearTimeout(resizeHandler);
+                resizeHandler = setTimeout(function() {
+                    setCanvasSize(lg.canvas, elem.offsetWidth, lg.canvas.offsetHeight);
+                    lg.resize();
+                }, 300);
+            });
+        }
+
+        lg.iter = 0;
+        lg.animating = true;
+        lg.animate(lg.iter);
+    };
+
+    lg.init();
+};

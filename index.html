@@ -7,6 +7,8 @@
         <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="canvas.js"></script>
+        <script src="logo.js"></script>
         <script type='text/javascript'>
             $(document).ready(function(){
                 var checkUrl = function() {
@@ -22,14 +24,7 @@
                 }
                 window.onhashchange = checkUrl;
                 checkUrl();
-
-
-                var queryDict = {}
-                location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
-                var theme = queryDict['theme']
-                if(theme && theme != 'blue') {
-                    $('html, body').css('background', "#"+theme);
-                }
+                var animation = new Logo($('#logo').get(0));
             });
         </script>
 		<style>
@@ -43,9 +38,10 @@
                 font-weight: normal;
                 min-width: 1000px;
                 position: relative;
+                height: 100%;
                 font-family: monospace;
 			}
-            #canvas { width: 100%; height: 100%; position: fixed; }
+            #logo { top: calc(50% - 120px); right: 0; bottom: 0; left: calc(50% - 500px); position: absolute;}
 
 			#main { width: 900px; position: absolute; top: 200px; right: 0; }
             #arrows { background: url(arrows.png); background-size: 100%; width: 60px; height: 100px; position: absolute; top: 203px; right: 960px; }
@@ -77,7 +73,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
 		</style>
 	</head>
 	<body>
-        <div id='canvas'></div>
+        <div id='logo'></div>
 		<div id='main'>
             <h1><a href='#' class='home'>Feynman Capital</a>  <span class='links'><a href='#contact'>Contact</a><a href='#memos'>Memos</a></span></h1>
             <div id='sub'>
