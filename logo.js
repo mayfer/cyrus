@@ -50,10 +50,16 @@ var Logo = function(elem, options) {
 
         ctx.beginPath();
 
-        var center = 150;
+        var center = {
+            x: ctx.width/2,
+            y: ctx.height/2,
+        };
         var radius = 50;
-        var pos = center + radius;
-        ctx.lineTo(pos, center);
+        var pos = {
+            x: center.x + radius,
+            y: center.y,
+        }
+        ctx.lineTo(pos.x, pos.y);
 
         for(var x = 0; x <= radius*2; x+=1) {
             var val = 0;
@@ -66,9 +72,9 @@ var Logo = function(elem, options) {
             var multiplier = Math.sin((x / (radius*2)) * Math.PI);
             val *= multiplier;
 
-            ctx.lineTo(pos - x, center + val);
+            ctx.lineTo(pos.x - x, pos.y + val);
         }
-        ctx.arc(center, center, radius, Math.PI, Math.PI * 2, false);
+        ctx.arc(center.x, center.y, radius, Math.PI, Math.PI * 2, false);
         //ctx.stroke();
         ctx.fill();
     };
