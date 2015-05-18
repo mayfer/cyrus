@@ -48,7 +48,6 @@ var Logo = function(elem, options) {
         ctx.fillStyle = '#fff';
         ctx.lineWidth = 3;
 
-        ctx.beginPath();
 
         var center = {
             x: ctx.width/2,
@@ -60,9 +59,19 @@ var Logo = function(elem, options) {
             x: center.x + radius,
             y: center.y,
         }
-        //ctx.lineTo(pos.x, pos.y);
-        ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
-        //ctx.stroke();
+
+        var length = 30
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y - length);
+        ctx.lineTo(pos.x, pos.y + length);
+        //ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.moveTo(pos.x - radius*2, pos.y - length);
+        ctx.lineTo(pos.x - radius*2, pos.y + length);
+        //ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
         ctx.stroke();
         ctx.closePath();
 
@@ -71,7 +80,7 @@ var Logo = function(elem, options) {
             for(var i=0; i<lg.waves.length; i++) {
                 var wave = lg.waves[i];
                 val += Math.sin(wave.iter) * Math.sin( (x / (radius*2)) * Math.PI * 2 * (wave.freq / 220)) * wave.amplitude;
-                wave.iter += wave.freq/2200000;
+                wave.iter += wave.freq/22000000;
             }
 
             var multiplier = Math.sin((x / (radius*2)) * Math.PI);
@@ -79,7 +88,7 @@ var Logo = function(elem, options) {
 
             //ctx.lineTo(pos.x - x, pos.y + val);
             ctx.beginPath();
-            ctx.arc(pos.x - x, pos.y + val*3, 1.5, Math.PI*0, Math.PI * 2, false);
+            ctx.arc(pos.x - x, pos.y + val*2, 1.5, Math.PI*0, Math.PI * 2, false);
             ctx.fill();
         }
     };
@@ -114,7 +123,7 @@ var Logo = function(elem, options) {
     lg.resize = function() {
         var base_freq = 220;
         lg.waves = [];
-        for(var i=0; i<5; i++) {
+        for(var i=0; i<9; i+= 0.7) {
             var wave = new lg.wave(base_freq * i);
             lg.waves.push(wave);
         }
