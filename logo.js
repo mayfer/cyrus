@@ -51,7 +51,7 @@ var Logo = function(elem, options) {
 
         var center = {
             x: ctx.width/2,
-            y: ctx.height/2,
+            y: 225,
         };
         var radius = 50;
 
@@ -60,19 +60,20 @@ var Logo = function(elem, options) {
             y: center.y,
         }
 
-        var length = 30
+        var length = 30;
+        var bend = 10;
         ctx.beginPath();
-        ctx.moveTo(pos.x + 10, pos.y - length);
+        ctx.moveTo(pos.x + bend, pos.y - length);
         ctx.lineTo(pos.x, pos.y);
-        ctx.lineTo(pos.x + 10, pos.y + length);
+        ctx.lineTo(pos.x + bend, pos.y + length);
         //ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
         ctx.stroke();
         ctx.closePath();
 
         ctx.beginPath();
-        ctx.moveTo(pos.x - radius*2 - 10, pos.y - length);
+        ctx.moveTo(pos.x - radius*2 - bend, pos.y - length);
         ctx.lineTo(pos.x - radius*2, pos.y);
-        ctx.lineTo(pos.x - radius*2 - 10, pos.y + length);
+        ctx.lineTo(pos.x - radius*2 - bend, pos.y + length);
         //ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
         ctx.stroke();
         ctx.closePath();

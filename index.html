@@ -19,7 +19,7 @@
                     if(hash.length > 1) {
                         $('#sub').show();
                     } else {
-                        $('#sub').hide();
+                        //$('#sub').hide();
                     }
                 }
                 window.onhashchange = checkUrl;
@@ -40,17 +40,20 @@
                 position: relative;
                 height: 100%;
                 font-family: monospace;
+                overflow: auto;
 			}
-            #logo { top: 125px; right: 880px; height: 200px; width: 200px; position: absolute; transform: rotate(0deg); }
+            #logo-container { position: absolute; top: 0; left: 150px; height: 100%; }
+            #logo { height: 400px; width: 200px; }
 
-			#main { width: 900px; position: absolute; top: 200px; right: 0; }
-            #arrows { background: url(arrows.png); background-size: 100%; width: 60px; height: 100px; position: absolute; top: 203px; right: 960px; }
+            #main-container {  position: relative; min-width: 700px; }
+			#main { width: 100%; margin-top: 200px; }
+
             #sub { min-height: 300px;
 background: linear-gradient(to bottom,  rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
             }
 
-            h1 { display: block; border-bottom: 3px solid rgba(255,255,255,0.5); line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; }
+            h1 { display: block; border-bottom: 0 solid rgba(255,255,255,0.5); line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; padding-left: 350px; }
             h2 { display: block; line-height: 120px; font-size: 120px; position: absolute; bottom: 0px; right: 20px; font-weight: normal; font-family: 'Marcellus SC', serif; color: rgba(255,255,255,0.2); -webkit-filter: blur(5px); }
             a, a:visited { color: #fff; text-decoration: none;}
             .links { font-size: 15px; line-height: 25px; position: absolute; right: 150px; bottom: 0; }
@@ -60,10 +63,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
 
             a.home:hover, a.home.current { border: none; }
 
-            .section { display: none; padding: 40px 40px 100px 40px; font-family: "Open Sans", sans-serif; font-size: 13px; }
-            .thing { margin-bottom: 20px; max-width: 600px; }
-            .thing span {  width: 600px; }
-            .thing a { font-size: 13px; }
+            .section { display: none; padding: 40px 150px 100px 350px; font-family: "Open Sans", sans-serif; font-size: 13px; }
+            .thing { margin-bottom: 20px;  text-align: right; }
+            .thing span {  }
+            .thing a { font-size: 13px; max-width: 400px; display: inline-block; }
             .thing label { display: block; padding-right: 15px; color: rgba(255,255,255,0.5); }
 
             #contact:target { display: block; }
@@ -73,34 +76,37 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', e
 		</style>
 	</head>
 	<body>
-        <div id='logo'></div>
-		<div id='main'>
-            <h1><a href='#' class='home'>Feynman Capital</a>  <span class='links'><a href='#contact'>Contact</a><a href='#memos'>Memos</a></span></h1>
-            <div id='sub'>
-                <div class='section' id='contact'>
-                    <div class='thing'><label>E-mail</label> <span><a href='mailto:info@feynmancapital.com'>info@feynmancapital.com</a></span></div>
-                </div>
-                <div class='section' id='memos'>
-                    <div class='thing'>
-                        <label>August 3<sup>rd</sup> 2013</label>
-                        <span><a href=''>Top 6 ways to get rich without doing any real work</a></span>
+        <div id='logo-container'>
+            <div id='logo'></div>
+        </div>
+		<div id='main-container'>
+            <div id='main'>
+                <h1><a href='#' class='home'>Feynman Capital</a>  <span class='links'><a href='#contact'>Contact</a><a href='#memos'>Memos</a></span></h1>
+                <div id='sub'>
+                    <div class='section' id='contact'>
+                        <div class='thing'><label>E-mail</label> <span><a href='mailto:info@feynmancapital.com'>info@feynmancapital.com</a></span></div>
                     </div>
-                    <div class='thing'>
-                        <label>August 3<sup>rd</sup> 2013</label>
-                        <span><a href=''>Fashion week review wrap-up bash</a></span>
-                    </div>
-                    <div class='thing'>
-                        <label>June 22<sup>nd</sup> 2013</label>
-                        <span><a href=''>Choosing the right underwear for important meetings, and how it can change your life in the long run</a></span>
-                    </div>
-                    <div class='thing'>
-                        <label>May 12<sup>th</sup> 2013</label>
-                        <span><a href=''>The dirty truth behind Obama Care</a></span>
+                    <div class='section' id='memos'>
+                        <div class='thing'>
+                            <label>August 3<sup>rd</sup> 2013</label>
+                            <span><a href=''>Top 6 ways to get rich without doing any real work</a></span>
+                        </div>
+                        <div class='thing'>
+                            <label>August 3<sup>rd</sup> 2013</label>
+                            <span><a href=''>Fashion week review wrap-up bash</a></span>
+                        </div>
+                        <div class='thing'>
+                            <label>June 22<sup>nd</sup> 2013</label>
+                            <span><a href=''>Choosing the right underwear for important meetings, and how it can change your life in the long run</a></span>
+                        </div>
+                        <div class='thing'>
+                            <label>May 12<sup>th</sup> 2013</label>
+                            <span><a href=''>The dirty truth behind Obama Care</a></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div></div>
 	</body>
 </html>
 
