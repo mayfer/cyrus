@@ -62,15 +62,17 @@ var Logo = function(elem, options) {
 
         var length = 30
         ctx.beginPath();
-        ctx.moveTo(pos.x, pos.y - length);
-        ctx.lineTo(pos.x, pos.y + length);
+        ctx.moveTo(pos.x + 10, pos.y - length);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.lineTo(pos.x + 10, pos.y + length);
         //ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
         ctx.stroke();
         ctx.closePath();
 
         ctx.beginPath();
-        ctx.moveTo(pos.x - radius*2, pos.y - length);
-        ctx.lineTo(pos.x - radius*2, pos.y + length);
+        ctx.moveTo(pos.x - radius*2 - 10, pos.y - length);
+        ctx.lineTo(pos.x - radius*2, pos.y);
+        ctx.lineTo(pos.x - radius*2 - 10, pos.y + length);
         //ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
         ctx.stroke();
         ctx.closePath();
