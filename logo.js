@@ -44,7 +44,7 @@ var Logo = function(elem, options) {
     
     lg.render = function() {
         lg.reset();
-        ctx.strokeStyle = '#f00';
+        ctx.strokeStyle = '#fff';
         ctx.fillStyle = '#fff';
         ctx.lineWidth = 3;
 
@@ -55,6 +55,7 @@ var Logo = function(elem, options) {
             y: ctx.height/2,
         };
         var radius = 50;
+
         var pos = {
             x: center.x + radius,
             y: center.y,
@@ -74,9 +75,9 @@ var Logo = function(elem, options) {
 
             ctx.lineTo(pos.x - x, pos.y + val);
         }
-        ctx.arc(center.x, center.y, radius, Math.PI, Math.PI * 2, false);
-        //ctx.stroke();
-        ctx.fill();
+        //ctx.arc(center.x, center.y, radius, Math.PI, Math.PI * 2, false);
+        ctx.stroke();
+        //ctx.fill();
     };
     lg.animate = function() {
 
