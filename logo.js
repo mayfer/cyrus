@@ -60,7 +60,11 @@ var Logo = function(elem, options) {
             x: center.x + radius,
             y: center.y,
         }
-        ctx.lineTo(pos.x, pos.y);
+        //ctx.lineTo(pos.x, pos.y);
+        ctx.arc(center.x, center.y, radius, Math.PI*0, Math.PI * 2, false);
+        //ctx.stroke();
+        ctx.stroke();
+        ctx.closePath();
 
         for(var x = 0; x <= radius*2; x+=1) {
             var val = 0;
@@ -73,11 +77,11 @@ var Logo = function(elem, options) {
             var multiplier = Math.sin((x / (radius*2)) * Math.PI);
             val *= multiplier;
 
-            ctx.lineTo(pos.x - x, pos.y + val);
+            //ctx.lineTo(pos.x - x, pos.y + val);
+            ctx.beginPath();
+            ctx.arc(pos.x - x, pos.y + val*3, 1.5, Math.PI*0, Math.PI * 2, false);
+            ctx.fill();
         }
-        //ctx.arc(center.x, center.y, radius, Math.PI, Math.PI * 2, false);
-        ctx.stroke();
-        //ctx.fill();
     };
     lg.animate = function() {
 
