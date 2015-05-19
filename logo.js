@@ -40,6 +40,7 @@ var Logo = function(elem, options) {
             wave.amplitude = 6;
         }
         wave.iter = Math.random() * Math.PI * 2;
+        wave.adjusted_freq = wave.freq/22000000;
     }
     
     lg.render = function() {
@@ -83,7 +84,7 @@ var Logo = function(elem, options) {
             for(var i=0; i<lg.waves.length; i++) {
                 var wave = lg.waves[i];
                 val += Math.sin(wave.iter) * Math.sin( (x / (radius*2)) * Math.PI * 2 * (wave.freq / 220)) * wave.amplitude;
-                wave.iter += wave.freq/22000000;
+                wave.iter += wave.adjusted_freq;
             }
 
             var multiplier = Math.sin((x / (radius*2)) * Math.PI);
