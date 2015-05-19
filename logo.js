@@ -51,7 +51,7 @@ var Logo = function(elem, options) {
 
         var center = {
             x: ctx.width/2,
-            y: 225,
+            y: 222,
         };
         var radius = 50;
 
@@ -124,14 +124,6 @@ var Logo = function(elem, options) {
     };
 
     lg.resize = function() {
-        var base_freq = 220;
-        lg.waves = [];
-        for(var i=0; i<9; i+= 0.7) {
-            var wave = new lg.wave(base_freq * i);
-            lg.waves.push(wave);
-        }
-
-        // var wave = new lg.wave(5500, 3); lg.waves.push(wave);
     };
 
     lg.distance = function(pos1, pos2) {
@@ -145,6 +137,12 @@ var Logo = function(elem, options) {
 
 
     lg.init = function() {
+        var base_freq = 220;
+        lg.waves = [];
+        for(var i=0; i<9; i+= 0.7) {
+            var wave = new lg.wave(base_freq * i);
+            lg.waves.push(wave);
+        }
 
         lg.resize();
         lg.reset();

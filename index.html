@@ -31,6 +31,7 @@
 			* {
 				margin: 0;
 				padding: 0;
+                -webkit-text-size-adjust: none;
 			}
 			html, body {
                 background: #0E2E68;
@@ -45,15 +46,15 @@
             #logo-container { position: absolute; top: 0; left: 150px; height: 100%; }
             #logo { height: 400px; width: 200px; }
 
-            #main-container {  position: relative; min-width: 700px; }
-			#main { width: 100%; margin-top: 200px; }
+            #main-container {  position: relative; min-width: 1100px; }
+			#main { width: 100%; margin-top: 200px; position: relative; }
 
             #sub { min-height: 300px;
 background: linear-gradient(to bottom,  rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
             }
 
-            h1 { display: block; border-bottom: 0 solid rgba(255,255,255,0.5); line-height: 50px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; padding-left: 350px; }
+            h1 { display: block; border-bottom: 0 solid rgba(255,255,255,0.5); line-height: 45px; font-size: 45px; position: relative; font-weight: normal; font-family: 'Marcellus SC', serif; padding-left: 350px; }
             h2 { display: block; line-height: 120px; font-size: 120px; position: absolute; bottom: 0px; right: 20px; font-weight: normal; font-family: 'Marcellus SC', serif; color: rgba(255,255,255,0.2); -webkit-filter: blur(5px); }
             a, a:visited { color: #fff; text-decoration: none;}
             .links { font-size: 15px; line-height: 25px; position: absolute; right: 150px; bottom: 0; }
